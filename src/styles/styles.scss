@@ -34,6 +34,35 @@ body {
     border-radius: 5px;
     margin-bottom: 20px;
   }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #c9c4bf;
+    height: 300px;
+    width: 300px;
+
+    .row-one, .row-two {
+      width: 300px;
+    }
+
+    .buttons-row {
+      button {
+        width: 18%;
+        height: 50px;
+      }
+    }
+    .bottom-rows {
+      width: 227px;
+      display: flex;
+      .left-container {
+        width: 100px;
+        button {
+          width: 30%;
+        }
+      }
+    }
+  }
 }
 
 
