@@ -1,8 +1,19 @@
 import './styles/styles.scss';
 
-// const testNumber = 5;
-// const testNumberTwo = 2;
+const displayNumber = document.querySelector('.number-input');
+const inputHistory = document.querySelector('.input-history');
+const numberButtons = Array.from(document.querySelectorAll('.number'));
+const plusBtn = document.querySelector('.plus-btn');
 
-// function add() {
+numberButtons.forEach((number, index) => {
+  number.addEventListener('click', function() {
+    console.log(number, index)
+  })
+});
 
-// }
+
+function plusOperator() {
+  let number = numberButtons.value;
+  
+}
+
