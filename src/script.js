@@ -10,12 +10,13 @@ const divideBtn = document.querySelector('.divide-btn');
 const equalsBtn = document.querySelector('.equals-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const eraseBtn = document.querySelector('.erase-btn');
+const decimalBtn = document.querySelector('.decimal-btn');
 
 let storedNumber = '';
 let inputHistory = [];
 let storedNumberArr = [];
+let operator = '';
 
-console.log(storedNumberArr)
 
 defaultState();
 
@@ -35,6 +36,7 @@ eraseBtn.addEventListener('click', function() {
   }
 });
 
+
 plusBtn.addEventListener('click', plusOperator);
 minusBtn.addEventListener('click', minusOperator);
 multiplyBtn.addEventListener('click', multiplyOperator);
@@ -53,21 +55,25 @@ numberButtons.forEach((number, index) => {
 
 // functions -----------------------------------------------
 
-
+// function calculate(operator, firstNumber, secondNumber) {
+//   return firstNumber operator secondNumber;
+// };
 
 function pushToArr(storedNumber) {
-  storedNumberArr.push(storedNumber);
-  // if(storedNumber.length < 2) {
-  //   storedNumberArr.push(storedNumber);
-  // } else {
-  //   storedNumberArr.shift();
-  //   storedNumberArr.push(storedNumber);
-  // }
-}
+
+  if (storedNumberArr.length < 2) {
+    storedNumberArr.push(storedNumber);
+  } else {
+    storedNumberArr.shift();
+    storedNumberArr.push(storedNumber);
+  }
+};
+
 
 function defaultState() {
   inputHistoryEl.textContent = '';
-  clearDisplayNumber();
+  inputHistory = [];
+  clearDisplayNumber(); 
 };
 
 function clearDisplayNumber() {
@@ -79,8 +85,10 @@ function plusOperator() {
   inputHistory.push(storedNumber);
   inputHistory.push('+');
   inputHistoryEl.textContent = inputHistory.join(' ');
+  pushToArr(storedNumber);
+  const answer = storedNumberArr[0] + storedNumberArr[1];
+  displayNumber.textContent = answer;
   clearDisplayNumber();
-  storedNumberArr.push(storedNumber);
 };
 
 function minusOperator() {
