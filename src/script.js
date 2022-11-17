@@ -11,6 +11,7 @@ const equalsBtn = document.querySelector('.equals-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const eraseBtn = document.querySelector('.erase-btn');
 const decimalBtn = document.querySelector('.decimal-btn');
+const operators = document.querySelectorAll('.operator');
 
 let storedNumber = '';
 let inputHistory = [];
@@ -21,6 +22,40 @@ let operator = '';
 defaultState();
 
 // event listeners -----------------------------------------
+
+operators.forEach((button, index) => {
+  const operatorType = button.innerText;
+  button.addEventListener('click', function() {
+    switch(operatorType) {
+      case '=':
+        console.log('this is the equals operator');
+        break;
+      case '+':
+        console.log('this is the + operator');
+        break;
+        case '-':
+          console.log('this is the minus operator');
+          break;
+        case '×':
+          console.log('this is the multiply operator');
+          break;
+        case '÷':
+          console.log('this is the divide operator');
+          break;
+        case '±':
+          console.log('this is the positive/negative operator');
+          break;
+        case '→':
+          console.log('this is the erase number operator');
+          break;
+          
+        default:
+          throw new Error('no case for this operator', operatorType);
+          break;
+    }
+  })
+})
+
 
 clearBtn.addEventListener('click', defaultState);
 
@@ -37,11 +72,6 @@ eraseBtn.addEventListener('click', function() {
 });
 
 
-plusBtn.addEventListener('click', plusOperator);
-minusBtn.addEventListener('click', minusOperator);
-multiplyBtn.addEventListener('click', multiplyOperator);
-divideBtn.addEventListener('click', divideOperator);
-equalsBtn.addEventListener('click', equalsOperator);
 
 // foreach loop --------------------------------------------
 
@@ -81,42 +111,40 @@ function clearDisplayNumber() {
   storedNumber = '';
 };
 
-function plusOperator() {
+function inputHistoryValue() {
   inputHistory.push(storedNumber);
   inputHistory.push('+');
   inputHistoryEl.textContent = inputHistory.join(' ');
   pushToArr(storedNumber);
-  const answer = storedNumberArr[0] + storedNumberArr[1];
-  displayNumber.textContent = answer;
   clearDisplayNumber();
 };
 
-function minusOperator() {
-  inputHistory.push(storedNumber);
-  inputHistory.push('-');
-  inputHistoryEl.textContent = inputHistory.join(' ');
-  clearDisplayNumber();
-};
+// function minusOperator() {
+//   inputHistory.push(storedNumber);
+//   inputHistory.push('-');
+//   inputHistoryEl.textContent = inputHistory.join(' ');
+//   clearDisplayNumber();
+// };
 
-function multiplyOperator() {
-  inputHistory.push(storedNumber);
-  inputHistory.push('×');
-  inputHistoryEl.textContent = inputHistory.join(' ');
-  clearDisplayNumber();
-};
+// function multiplyOperator() {
+//   inputHistory.push(storedNumber);
+//   inputHistory.push('×');
+//   inputHistoryEl.textContent = inputHistory.join(' ');
+//   clearDisplayNumber();
+// };
 
-function divideOperator() {
-  inputHistory.push(storedNumber);
-  inputHistory.push('÷');
-  inputHistoryEl.textContent = inputHistory.join(' ');
-  clearDisplayNumber();
-};
+// function divideOperator() {
+//   inputHistory.push(storedNumber);
+//   inputHistory.push('÷');
+//   inputHistoryEl.textContent = inputHistory.join(' ');
+//   clearDisplayNumber();
+// };
 
-function equalsOperator() {
-  inputHistory.push(storedNumber);
-  inputHistory.push('=');
-  inputHistoryEl.textContent = inputHistory.join(' ');
-  clearDisplayNumber();
-};
+// function equalsOperator() {
+//   inputHistory.push(storedNumber);
+//   inputHistory.push('=');
+//   inputHistoryEl.textContent = inputHistory.join(' ');
+//   clearDisplayNumber();
+// };
 
 
