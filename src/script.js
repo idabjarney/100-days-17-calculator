@@ -16,7 +16,11 @@ const operators = document.querySelectorAll('.operator');
 let storedNumber = '';
 let inputHistory = [];
 let storedNumberArr = [];
-let operator = '';
+let previousNumber = storedNumberArr[storedNumberArr.length - 2];
+let currentNumber = storedNumberArr[storedNumberArr.length - 2];
+
+// console.log({previousNumber, currentNumber});
+console.log(storedNumberArr);
 
 
 defaultState();
@@ -26,12 +30,15 @@ defaultState();
 operators.forEach((button, index) => {
   const operatorType = button.innerText;
   button.addEventListener('click', function() {
+
     switch(operatorType) {
       case '=':
         console.log('this is the equals operator');
         break;
-      case '+':
-        console.log('this is the + operator');
+      case '+': 
+        storedNumberArr.push(storedNumber);
+        const answer = +previousNumber + +currentNumber;
+        console.log({previousNumber, currentNumber, answer});
         break;
         case '-':
           console.log('this is the minus operator');
@@ -85,18 +92,9 @@ numberButtons.forEach((number, index) => {
 
 // functions -----------------------------------------------
 
-// function calculate(operator, firstNumber, secondNumber) {
-//   return firstNumber operator secondNumber;
-// };
 
 function pushToArr(storedNumber) {
-
-  if (storedNumberArr.length < 2) {
-    storedNumberArr.push(storedNumber);
-  } else {
-    storedNumberArr.shift();
-    storedNumberArr.push(storedNumber);
-  }
+  storedNumberArr.push(storedNumber);
 };
 
 
@@ -119,32 +117,5 @@ function inputHistoryValue() {
   clearDisplayNumber();
 };
 
-// function minusOperator() {
-//   inputHistory.push(storedNumber);
-//   inputHistory.push('-');
-//   inputHistoryEl.textContent = inputHistory.join(' ');
-//   clearDisplayNumber();
-// };
-
-// function multiplyOperator() {
-//   inputHistory.push(storedNumber);
-//   inputHistory.push('×');
-//   inputHistoryEl.textContent = inputHistory.join(' ');
-//   clearDisplayNumber();
-// };
-
-// function divideOperator() {
-//   inputHistory.push(storedNumber);
-//   inputHistory.push('÷');
-//   inputHistoryEl.textContent = inputHistory.join(' ');
-//   clearDisplayNumber();
-// };
-
-// function equalsOperator() {
-//   inputHistory.push(storedNumber);
-//   inputHistory.push('=');
-//   inputHistoryEl.textContent = inputHistory.join(' ');
-//   clearDisplayNumber();
-// };
 
 
